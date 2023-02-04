@@ -18,12 +18,34 @@ public class BuildingServiceImpl implements BuildingService {
 
 
 
-	public List<BuildingFilter> findAll(String name) {
-		List<BuildingEmyeuanh> buildingEmyeuanhs = buildingDao.findAll(name);
+	public List<BuildingFilter> findSearch(String name, String street, Integer numberOfBasement, Integer floorArea) {
+		List<BuildingEmyeuanh> buildingEmyeuanhs = buildingDao.findSearch(name, street, numberOfBasement, floorArea);
 		List<BuildingFilter> buildingFilters = new ArrayList<>();
 		for(BuildingEmyeuanh item : buildingEmyeuanhs) {
 			BuildingFilter buildingFilter = new BuildingFilter();
 			buildingFilter.setName(item.getName());
+			buildingFilter.setNumberOfBasement(item.getNumberOfBasement());
+			buildingFilter.setFloorArea(item.getNumberOfBasement());
+			buildingFilter.setStreet(item.getStreet());
+			buildingFilter.setTypes(item.getTypes());
+			buildingFilters.add(buildingFilter);
+		}
+		return buildingFilters;
+	}
+
+
+
+	@Override
+	public List<BuildingFilter> findAll() {
+		List<BuildingEmyeuanh> buildingEmyeuanhs = buildingDao.findAll();
+		List<BuildingFilter> buildingFilters = new ArrayList<>();
+		for(BuildingEmyeuanh item : buildingEmyeuanhs) {
+			BuildingFilter buildingFilter = new BuildingFilter();
+			buildingFilter.setName(item.getName());
+			buildingFilter.setNumberOfBasement(item.getNumberOfBasement());
+			buildingFilter.setFloorArea(item.getNumberOfBasement());
+			buildingFilter.setStreet(item.getStreet());
+			buildingFilter.setTypes(item.getTypes());
 			buildingFilters.add(buildingFilter);
 		}
 		return buildingFilters;

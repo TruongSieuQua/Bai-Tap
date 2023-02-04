@@ -5,7 +5,7 @@ import java.util.List;
 import service.filter.BuildingFilter;
 
 public interface BuildingService {
-	List<BuildingFilter> findAll(String name);
+	List<BuildingFilter> findSearch(String name, String street, Integer numberOfBasement, Integer floorArea);
 
-	
+	List<BuildingFilter> findAll();
 }
