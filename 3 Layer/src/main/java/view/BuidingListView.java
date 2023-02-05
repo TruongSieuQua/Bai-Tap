@@ -1,13 +1,6 @@
 package view;
 
-import java.util.List;
-import java.util.Scanner;
-
-import controller.BuildingController;
-import model.BuildingModel;
-
 public class BuidingListView {
-	
 	
 //	public static void main(String[] args) {
 //		System.out.println("1. Xem tat ca danh sach!");
@@ -48,7 +41,7 @@ public class BuidingListView {
 //		in.close();
 //	}
 	
-	private static void showInfo(BuildingModel building) {
-		System.out.println(building.toString());
-	}
+//	private static void showInfo(BuildingModel building) {
+//		System.out.println(building.toString());
+//	}
 }

@@ -19,7 +19,7 @@ public class BuildingModel {
 	public BuildingModel(BuildingEntity entity) {
 		this.setName(entity.getName());
 		this.setNumberOfBasement(entity.getNumberOfBasement());
-		this.setFloorArea(entity.getNumberOfBasement());
+		this.setFloorArea(entity.getFloorArea());
 		this.setStreet(entity.getStreet());
 		this.setTypes(entity.getTypes());
 	}
@@ -69,9 +69,9 @@ public class BuildingModel {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("Name: ").append(name)
-			.append("Số tầng hầm: ").append(numberOfBasement)
-			.append("Diện tích sàn: ").append(floorArea)
-			.append("Loại nhà: ");
+			.append("\nSố tầng hầm: ").append(numberOfBasement)
+			.append("\nDiện tích sàn: ").append(floorArea)
+			.append("\nLoại nhà: ");
 		for(Map.Entry<String, String> entry : Constant.BUILDING_TYPES.entrySet()) {
 			String type = this.types.contains(entry.getKey()) ? entry.getValue() + ", " : "";
 			sb.append(type);

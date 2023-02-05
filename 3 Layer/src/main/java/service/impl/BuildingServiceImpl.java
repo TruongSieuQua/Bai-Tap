@@ -18,8 +18,8 @@ public class BuildingServiceImpl implements BuildingService {
 
 
 
-	public List<BuildingModel> findSearch(String name, String street, Integer numberOfBasement, Integer floorArea) {
-		List<BuildingEntity> buildingEntities = buildingDao.findSearch(name, street, numberOfBasement, floorArea);
+	public List<BuildingModel> findSearch(String name, Integer numberOfBasement, Integer floorArea, String street, String types) {
+		List<BuildingEntity> buildingEntities = buildingDao.findSearch(name, numberOfBasement, floorArea, street, types);
 		List<BuildingModel> buildingModels = buildingEntities.stream()
 	            .map(BuildingModel::new)
 	            .collect(Collectors.toList());

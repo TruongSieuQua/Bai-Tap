@@ -29,10 +29,10 @@ public class BuildingDaoImpl implements BuildingDao {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			st = conn.createStatement();
 			StringBuilder sql = new StringBuilder("Select * FROM building where 1=1");
-			if(StringUtils.isNullOrEmpty(name)) {
+			if(!StringUtils.isNullOrEmpty(name)) {
 				sql.append(" and name like '%" + name + "%'");
 			}
-			if(StringUtils.isNullOrEmpty(street)) {
+			if(!StringUtils.isNullOrEmpty(street)) {
 				sql.append(" and street like '%" + street + "%'");
 			}
 			if(numberOfBasement!=null) {
@@ -41,15 +41,16 @@ public class BuildingDaoImpl implements BuildingDao {
 			if(floorArea!=null) {
 				sql.append(" and floorArea = " + floorArea);
 			}
+			System.out.println(sql.toString());
 			rs = st.executeQuery(sql.toString());
 			while(rs.next()) {
-				BuildingEntity buildingEmyeuanh = new BuildingEntity();
-				buildingEmyeuanh.setName(rs.getString("name"));
-				buildingEmyeuanh.setNumberOfBasement(rs.getInt("numberofbasement"));
-				buildingEmyeuanh.setFloorArea(rs.getInt(("floorarea")));
-				buildingEmyeuanh.setStreet(rs.getString("street"));
-				buildingEmyeuanh.setTypes(rs.getString("types"));
-				buildingEmyeuanhs.add(buildingEmyeuanh);
+				BuildingEntity buildingEntity = new BuildingEntity();
+				buildingEntity.setName(rs.getString("name"));
+				buildingEntity.setNumberOfBasement(rs.getInt("numberofbasement"));
+				buildingEntity.setFloorArea(rs.getInt(("floorarea")));
+				buildingEntity.setStreet(rs.getString("street"));
+				buildingEntity.setTypes(rs.getString("types"));
+				buildingEmyeuanhs.add(buildingEntity);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -100,5 +101,4 @@ public class BuildingDaoImpl implements BuildingDao {
 		}
 		return buildingEntities;
 	}
-
 }

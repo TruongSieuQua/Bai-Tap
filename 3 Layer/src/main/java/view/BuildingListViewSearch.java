@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Scanner;
 
 import controller.BuildingController;
 import model.BuildingModel;
@@ -20,6 +21,19 @@ public class BuildingListViewSearch {
 	
 	public static void main(String args[]) {
 		BuildingController controller = new BuildingController();
-		controller.findSearch(null, null, null, null).show();
+		Scanner in = new Scanner(System.in);
+		System.out.print("Enter building name: ");
+		String name = in.nextLine();
+		System.out.print("Enter building street: ");
+		String street = in.nextLine();
+		System.out.print("Enter number of basement: ");
+		String nob = in.nextLine();	
+		Integer numberOfBasement = nob.matches("[0-9]+") ? Integer.parseInt(nob): null;
+		System.out.print("Enter floor area: ");
+		String fa = in.nextLine();
+		Integer floorArea = fa.matches("[0-9]+")? Integer.parseInt(fa): null;
+		System.out.println("Ket qua: ");
+		controller.findSearch(name, numberOfBasement, floorArea, street, null).show();
+		in.close();
 	}
 }

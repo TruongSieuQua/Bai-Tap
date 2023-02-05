@@ -24,5 +24,6 @@ public class BuildingListViewAll {
 	public static void main(String[] args) {
 		BuildingController controller = new BuildingController();
 		controller.findAll().show();
+		System.out.println("Hello");
 	}
 }
