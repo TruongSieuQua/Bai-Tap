@@ -1,13 +1,13 @@
-package service.filter;
+package dao.entity;
 
-public class BuildingFilter {
+public class BuildingEntity {
 	private String name;
 	private String street;
 	private Integer numberOfBasement;
 	private Integer floorArea;
 	private String types;
 	
-	public BuildingFilter() {
+	public BuildingEntity() {
 		super();
 	}
 	
@@ -50,5 +50,5 @@ public class BuildingFilter {
 	public void setTypes(String types) {
 		this.types = types;
 	}
-
+	
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.BuildingDao;
-import dao.emyeuanh.BuildingEmyeuanh;
+import dao.entity.BuildingEntity;
 import utils.StringUtils;
 
 public class BuildingDaoImpl implements BuildingDao {
@@ -17,12 +17,13 @@ public class BuildingDaoImpl implements BuildingDao {
 	private String PASS = "123456a@";
 
 
-	public List<BuildingEmyeuanh> findSearch(String name, String street,
-			Integer numberOfBasement, Integer floorArea) {
+	public List<BuildingEntity> findSearch(String name,
+			Integer numberOfBasement, Integer floorArea,
+			String street, String types) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		List<BuildingEmyeuanh> buildingEmyeuanhs = new ArrayList<>();
+		List<BuildingEntity> buildingEmyeuanhs = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -42,7 +43,7 @@ public class BuildingDaoImpl implements BuildingDao {
 			}
 			rs = st.executeQuery(sql.toString());
 			while(rs.next()) {
-				BuildingEmyeuanh buildingEmyeuanh = new BuildingEmyeuanh();
+				BuildingEntity buildingEmyeuanh = new BuildingEntity();
 				buildingEmyeuanh.setName(rs.getString("name"));
 				buildingEmyeuanh.setNumberOfBasement(rs.getInt("numberofbasement"));
 				buildingEmyeuanh.setFloorArea(rs.getInt(("floorarea")));
@@ -66,11 +67,11 @@ public class BuildingDaoImpl implements BuildingDao {
 
 
 	@Override
-	public List<BuildingEmyeuanh> findAll() {
+	public List<BuildingEntity> findAll() {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		List<BuildingEmyeuanh> buildingEmyeuanhs = new ArrayList<>();
+		List<BuildingEntity> buildingEntities = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -78,13 +79,13 @@ public class BuildingDaoImpl implements BuildingDao {
 			StringBuilder sql = new StringBuilder("Select * FROM building;");
 			rs = st.executeQuery(sql.toString());
 			while(rs.next()) {
-				BuildingEmyeuanh buildingEmyeuanh = new BuildingEmyeuanh();
-				buildingEmyeuanh.setName(rs.getString("name"));
-				buildingEmyeuanh.setNumberOfBasement(rs.getInt("numberofbasement"));
-				buildingEmyeuanh.setFloorArea(rs.getInt(("floorarea")));
-				buildingEmyeuanh.setStreet(rs.getString("street"));
-				buildingEmyeuanh.setTypes(rs.getString("types"));
-				buildingEmyeuanhs.add(buildingEmyeuanh);
+				BuildingEntity buildingEntity = new BuildingEntity();
+				buildingEntity.setName(rs.getString("name"));
+				buildingEntity.setNumberOfBasement(rs.getInt("numberofbasement"));
+				buildingEntity.setFloorArea(rs.getInt(("floorarea")));
+				buildingEntity.setStreet(rs.getString("street"));
+				buildingEntity.setTypes(rs.getString("types"));
+				buildingEntities.add(buildingEntity);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +98,7 @@ public class BuildingDaoImpl implements BuildingDao {
 				e.printStackTrace();
 			}
 		}
-		return buildingEmyeuanhs;
+		return buildingEntities;
 	}
 
 }

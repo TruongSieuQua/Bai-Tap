@@ -1,5 +1,10 @@
 package model;
 
+import java.util.Map;
+
+import dao.entity.BuildingEntity;
+import utils.Constant;
+
 public class BuildingModel {
 	private String name;
 	private String street;
@@ -9,6 +14,14 @@ public class BuildingModel {
 	
 	public BuildingModel() {
 		super();
+	}
+	
+	public BuildingModel(BuildingEntity entity) {
+		this.setName(entity.getName());
+		this.setNumberOfBasement(entity.getNumberOfBasement());
+		this.setFloorArea(entity.getNumberOfBasement());
+		this.setStreet(entity.getStreet());
+		this.setTypes(entity.getTypes());
 	}
 	
 	public String getName() {
@@ -53,8 +66,18 @@ public class BuildingModel {
 
 	@Override
 	public String toString() {
-		return "BuildingModel [name=" + name + ", street=" + street + ", numberOfBasement=" + numberOfBasement
-				+ ", floorArea=" + floorArea + ", types=" + types + "]";
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Name: ").append(name)
+			.append("Số tầng hầm: ").append(numberOfBasement)
+			.append("Diện tích sàn: ").append(floorArea)
+			.append("Loại nhà: ");
+		for(Map.Entry<String, String> entry : Constant.BUILDING_TYPES.entrySet()) {
+			String type = this.types.contains(entry.getKey()) ? entry.getValue() + ", " : "";
+			sb.append(type);
+		}
+		sb.setLength(sb.length() - 2);
+		return sb.toString();
 	}
 	
 	

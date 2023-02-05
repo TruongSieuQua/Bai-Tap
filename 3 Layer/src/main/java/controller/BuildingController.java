@@ -1,43 +1,23 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.BuildingModel;
 import service.BuildingService;
-import service.filter.BuildingFilter;
 import service.impl.BuildingServiceImpl;
+import view.BuildingListViewAll;
+import view.BuildingListViewSearch;
 
 public class BuildingController {
 	private BuildingService buildingService = new BuildingServiceImpl();
 	
-	public List<BuildingModel> findAll() {
-		List<BuildingFilter> buildingFilters = buildingService.findAll();
-		List<BuildingModel> buildingModels = new ArrayList<>();
-		for(BuildingFilter item: buildingFilters) {
-			BuildingModel buildingModel = new BuildingModel();
-			buildingModel.setName(item.getName());
-			buildingModel.setNumberOfBasement(item.getNumberOfBasement());
-			buildingModel.setFloorArea(item.getNumberOfBasement());
-			buildingModel.setStreet(item.getStreet());
-			buildingModel.setTypes(item.getTypes());
-			buildingModels.add(buildingModel);
-		}
-		return buildingModels;
+	public BuildingListViewAll findAll() {
+		List<BuildingModel> buildingModels = buildingService.findAll();
+		return new BuildingListViewAll(buildingModels);
 	}
 	
-	public List<BuildingModel> findSearch(String name, String street, Integer numberOfBasement, Integer floorArea) {
-		List<BuildingFilter> buildingFilters = buildingService.findSearch(name, street, numberOfBasement, floorArea);
-		List<BuildingModel> buildingModels = new ArrayList<>();
-		for(BuildingFilter item: buildingFilters) {
-			BuildingModel buildingModel = new BuildingModel();
-			buildingModel.setName(item.getName());
-			buildingModel.setNumberOfBasement(item.getNumberOfBasement());
-			buildingModel.setFloorArea(item.getNumberOfBasement());
-			buildingModel.setStreet(item.getStreet());
-			buildingModel.setTypes(item.getTypes());
-			buildingModels.add(buildingModel);
-		}
-		return buildingModels;
+	public BuildingListViewSearch findSearch(String name, Integer numberOfBasement, Integer floorArea, String street ,String types) {
+		List<BuildingModel> buildingModels = buildingService.findSearch(name, numberOfBasement, floorArea, street, types);
+		return new BuildingListViewSearch(buildingModels);
 	}
 }
