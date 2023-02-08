@@ -4,6 +4,7 @@ import java.util.Map;
 
 import dao.entity.BuildingEntity;
 import utils.Constant;
+import utils.StringUtils;
 
 public class BuildingModel {
 	private String name;
@@ -71,14 +72,7 @@ public class BuildingModel {
 		sb.append("Name: ").append(name)
 			.append("\nSố tầng hầm: ").append(numberOfBasement)
 			.append("\nDiện tích sàn: ").append(floorArea)
-			.append("\nLoại nhà: ");
-		for(Map.Entry<String, String> entry : Constant.BUILDING_TYPES.entrySet()) {
-			String type = this.types.contains(entry.getKey()) ? entry.getValue() + ", " : "";
-			sb.append(type);
-		}
-		sb.setLength(sb.length() - 2);
+			.append("\nLoại nhà: ").append(StringUtils.convertBuildingType(types));
 		return sb.toString();
 	}
-	
-	
 }

@@ -11,13 +11,11 @@ import view.BuildingListViewSearch;
 public class BuildingController {
 	private BuildingService buildingService = new BuildingServiceImpl();
 	
-	public BuildingListViewAll findAll() {
-		List<BuildingModel> buildingModels = buildingService.findAll();
-		return new BuildingListViewAll(buildingModels);
+	public List<BuildingModel> findAll() {
+		return buildingService.findAll();
 	}
 	
-	public BuildingListViewSearch findSearch(String name, Integer numberOfBasement, Integer floorArea, String street ,String types) {
-		List<BuildingModel> buildingModels = buildingService.findSearch(name, numberOfBasement, floorArea, street, types);
-		return new BuildingListViewSearch(buildingModels);
+	public List<BuildingModel> findSearch(String name, Integer numberOfBasement, Integer floorArea, String street ,String types) {
+		return buildingService.findSearch(name, numberOfBasement, floorArea, street, types);
 	}
 }

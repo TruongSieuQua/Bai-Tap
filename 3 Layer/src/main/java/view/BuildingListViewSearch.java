@@ -33,7 +33,9 @@ public class BuildingListViewSearch {
 		String fa = in.nextLine();
 		Integer floorArea = fa.matches("[0-9]+")? Integer.parseInt(fa): null;
 		System.out.println("Ket qua: ");
-		controller.findSearch(name, numberOfBasement, floorArea, street, null).show();
+		List<BuildingModel> buildingModels = controller.findSearch(name, numberOfBasement, floorArea, street, null);
+		BuildingListViewSearch view = new BuildingListViewSearch(buildingModels);
 		in.close();
+		view.show();
 	}
 }

@@ -41,7 +41,6 @@ public class BuildingDaoImpl implements BuildingDao {
 			if(floorArea!=null) {
 				sql.append(" and floorArea = " + floorArea);
 			}
-			System.out.println(sql.toString());
 			rs = st.executeQuery(sql.toString());
 			while(rs.next()) {
 				BuildingEntity buildingEntity = new BuildingEntity();

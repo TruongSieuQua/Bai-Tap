@@ -11,5 +11,4 @@ public class Constant {
 		BUILDING_TYPES.put("nguyen-can", "nguyên căn");
 		BUILDING_TYPES.put("noi-that", "nội thất");
 	}
-	
 }
