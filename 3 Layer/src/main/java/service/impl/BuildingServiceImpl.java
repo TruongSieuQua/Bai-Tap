@@ -16,17 +16,13 @@ public class BuildingServiceImpl implements BuildingService {
 		buildingDao = new BuildingDaoImpl();
 	}
 
-
-
-	public List<BuildingModel> findSearch(String name, Integer numberOfBasement, Integer floorArea, String street, String types) {
-		List<BuildingEntity> buildingEntities = buildingDao.findSearch(name, numberOfBasement, floorArea, street, types);
+	public List<BuildingModel> findSearch(BuildingModel searchKey) {
+		List<BuildingEntity> buildingEntities = buildingDao.findSearch(searchKey.toBuildingEntity());
 		List<BuildingModel> buildingModels = buildingEntities.stream()
 	            .map(BuildingModel::new)
 	            .collect(Collectors.toList());
 		return buildingModels;
 	}
-
-
 
 	@Override
 	public List<BuildingModel> findAll() {

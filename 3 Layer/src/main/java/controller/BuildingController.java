@@ -15,7 +15,7 @@ public class BuildingController {
 		return buildingService.findAll();
 	}
 	
-	public List<BuildingModel> findSearch(String name, Integer numberOfBasement, Integer floorArea, String street ,String types) {
-		return buildingService.findSearch(name, numberOfBasement, floorArea, street, types);
+	public List<BuildingModel> findSearch(BuildingModel searchKey) {
+		return buildingService.findSearch(searchKey);
 	}
 }

@@ -25,6 +25,16 @@ public class BuildingModel {
 		this.setTypes(entity.getTypes());
 	}
 	
+	public BuildingEntity toBuildingEntity() {
+		BuildingEntity entity = new BuildingEntity();
+		entity.setName(name);
+		entity.setStreet(street);
+		entity.setNumberOfBasement(numberOfBasement);
+		entity.setFloorArea(floorArea);
+		entity.setTypes(types);
+		return entity;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -67,7 +77,6 @@ public class BuildingModel {
 
 	@Override
 	public String toString() {
-		
 		StringBuilder sb = new StringBuilder();
 		sb.append("Name: ").append(name)
 			.append("\nSố tầng hầm: ").append(numberOfBasement)
